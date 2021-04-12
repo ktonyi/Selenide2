@@ -23,7 +23,7 @@ public class AppTesting {
     @Test
     void shouldCardDeliveryWithAllData() {
         String dateToEnter = LocalDate.now().plusDays(10).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        //open("http://localhost:9999");
+
         $("[placeholder='Город']").setValue("Санкт-Петербург");
         $("[data-test-id=date] input.input__control").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("[data-test-id=date] input.input__control").setValue(dateToEnter);
@@ -36,7 +36,7 @@ public class AppTesting {
 
     @Test
     void shouldCardDeliveryWithoutCity(){
-        //open("http://localhost:9999");
+
         $("[name='name']").setValue("Сергей Миронов");
         $("[name='phone']").setValue("+71237654321");
         $("[class=checkbox__box]").click();
@@ -46,7 +46,7 @@ public class AppTesting {
 
     @Test
     void shouldCardDeliveryWithoutName(){
-        //open("http://localhost:9999");
+
         $("[placeholder='Город']").setValue("Санкт-Петербург");
         $("[name='phone']").setValue("+71237654321");
         $("[class=checkbox__box]").click();
@@ -56,7 +56,7 @@ public class AppTesting {
 
     @Test
     void shouldCardDeliveryWithEngName(){
-        //open("http://localhost:9999");
+
         $("[placeholder='Город']").setValue("Санкт-Петербург");
         $("[name='name']").setValue("Sergey Mironov");
         $("[name='phone']").setValue("+71237654321");
@@ -67,7 +67,7 @@ public class AppTesting {
 
     @Test
     void shouldCardDeliveryWithoutPhone(){
-        //open("http://localhost:9999");
+
         $("[placeholder='Город']").setValue("Санкт-Петербург");
         $("[name='name']").setValue("Сергей Миронов");
         $("[class=checkbox__box]").click();
@@ -77,7 +77,7 @@ public class AppTesting {
 
     @Test
     void shouldCardDeliveryWithoutCheckbox(){
-        //open("http://localhost:9999");
+
         $("[placeholder='Город']").setValue("Санкт-Петербург");
         $("[name='name']").setValue("Сергей Миронов");
         $("[name='phone']").setValue("+71237654321");
