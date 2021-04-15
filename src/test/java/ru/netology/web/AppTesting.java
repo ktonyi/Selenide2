@@ -3,12 +3,13 @@ package ru.netology.web;
 import org.junit.jupiter.api.BeforeEach;
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+import java.time.Duration;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.withText;
@@ -23,7 +24,6 @@ public class AppTesting {
     @Test
     void shouldCardDeliveryWithAllData() {
         String dateToEnter = LocalDate.now().plusDays(10).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-
         $("[placeholder='Город']").setValue("Санкт-Петербург");
         $("[data-test-id=date] input.input__control").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("[data-test-id=date] input.input__control").setValue(dateToEnter);
@@ -31,7 +31,9 @@ public class AppTesting {
         $("[name='phone']").setValue("+71237654321");
         $("[class=checkbox__box]").click();
         $$("button").find(exactText("Забронировать")).click();
-        $(withText("Успешно!")).waitUntil(visible, 15000);
+        $(" [ data-test-id=notification]").shouldBe(visible, Duration.ofMillis(15000))
+                .shouldHave(exactText("Успешно! Встреча успешно забронирована на " + dateToEnter));
+
     }
 
     @Test
